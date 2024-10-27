@@ -1,0 +1,11 @@
+[package]
+name = "nn"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+ndarray = "0.16.1"
+tensorlib = {path = "../tensorlib" }
+log = "0.4.22"
+async-trait = "0.1.82"
+web-time = "1.1.0"

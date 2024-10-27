@@ -1,0 +1,15 @@
+[package]
+name = "state_dict"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+tensorlib = { path = "../tensorlib" }
+nn = { path = "../nn" }
+bytemuck = "1.17.0"
+async-trait = "0.1.82"
+ehttp = {git = "https://github.com/emilk/ehttp.git", rev="a598e64d956b16d25a73fcc628865b952d664665"}
+tokio = "1.40.0"
+anyhow = "1.0.87"
+safetensors = "0.4.5"
+log = "0.4.22"

@@ -1,0 +1,6 @@
+[workspace]
+members = [
+    "src/core/tensorlib",
+    "src/core/state_dict",
+    "src/core/nn", "cmd/wasm", "src/core/generator", "src/tokenizer", "src/worker_engine",
+]

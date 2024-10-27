@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AQLM.rs</title>
+    <style>
+        /** {
+            outline: 1px solid red;
+        }*/
+        * {
+            font-family: -apple-system,BlinkMacSystemFont,Inter,ui-sans-serif,system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif,Helvetica Neue,Arial,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";
+        }
+        a {
+            color: black;
+        }
+        html {
+            height: 100%;
+        }
+        body {
+            padding: 0px;
+            margin: 0px;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+        }
+
+        #header {
+            display: flex;
+            padding-left: 20px;
+            padding-right: 20px;
+            justify-content: space-between;
+            flex-direction: row;
+            max-width: 350px;
+        }
+        .header-item {
+            /*padding-left: 20px;*/
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .header-item > h2 {
+            /*margin-right: 20px;*/
+            /*padding-left: 20px;*/
+            font-size: 26px;
+        }
+        .header-item > h3 {
+            /*margin-left: 50px;*/
+            font-size: 20px;
+        }
+        .header-item > h2 > a {
+            text-decoration: none;
+        }
+        .header-item > h3 > a {
+            text-decoration: none;
+        }
+        #title {
+            padding-left: 20px;
+            font-size: 26px;
+        }
+        #title > a {
+            text-decoration: none;
+        }
+        .message {
+            display: inline-block;
+            text-wrap: wrap;
+            text-wrap-mode: wrap;
+            text-wrap-style: stable;
+            max-width: 40%;
+            background: #f1f1f1;
+            margin: 8px;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 18px;
+        }
+        .user-message-row {
+            display: flex;
+            flex-direction: row-reverse;
+        }
+        .ai-message-row {
+            display: flex;
+            flex-direction: row;
+        }
+        #user-input-form {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+        }
+        #user-input {
+            width: 100%;
+            background: #f1f1f1;
+            height: 44px;
+            border-radius: 22px;
+            border: none;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            padding-left: 23px;
+            font-size: 16px;
+        }
+        #user-input-button {
+            height: 44px;
+            width: 44px;
+            min-width: 44px;
+            border-radius: 22px;
+            border: none;
+            padding: 0px;
+            margin-left: 12px;
+            font-size: 22px;
+        }
+        #clear-button {
+            height: 44px;
+            width: 44px;
+            min-width: 44px;
+            border-radius: 22px;
+            border: none;
+            padding: 0px;
+            margin-right: 12px;
+            font-size: 22px;
+        }
+        .clear-button-hidden {
+            display: none;
+        }
+        #description {
+            padding: 20px;
+            height: 40%;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+        #description > h2 {
+            font-size: 26px;
+        }
+        .description-hidden {
+            display: none;
+        }
+        .inactive-button {
+            color: #aaa;
+        }
+
+        .chat-hidden {
+            display: none;
+        }
+        .chat-visible {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(98411300, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true
+    });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/98411300" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+
+<div id="header">
+    <div class="header-item"><h2><a href="./">AQLM.rs</a></h2></div>
+    <div class="header-item"><h3><a href="./">Demo</a></h3></div>
+    <div class="header-item"><h3><a href="./about.html">About</a></h3></div>
+</div>
+<div class="chat-hidden" id="chat"></div>
+<div id="description">
+    <h2 class="input-activator">Run Llama-3.1-8B directly in a browser</h2>
+    <h3 class="input-activator">With state of the art 2 bit compression</h3>
+    <!-- <p><a href="./">How this works</a></p> -->
+    <p><a href="./about.html">How does it work</a></p>
+    <p><a href="https://youtu.be/fPOHT4Zf_NA">Demo video</a></p>
+    <p><a href="https://galqiwi.github.io">About me</a></p>
+</div>
+<form id="user-input-form">
+    <button type="button" id="clear-button" class="clear-button-hidden">
+        <i class="fa-solid fa-rotate"></i>
+    </button>
+    <input id="user-input" type="text" placeholder="Send a Message"  autocomplete="off">
+    <button id="user-input-button">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+</form>
+<script type="module" src="index.js"></script>
+<script>
+    Array.from(document.getElementsByClassName("input-activator")).forEach((element) => {
+        element.addEventListener("click", () => {
+            let input_field = document.getElementById("user-input");
+            input_field.focus();
+        });
+    });
+</script>
+
+</body>
+</html>

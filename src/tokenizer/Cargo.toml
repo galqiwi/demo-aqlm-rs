@@ -1,0 +1,11 @@
+[package]
+name = "tokenizer"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base64 = "0.22.1"
+rustc-hash = "1.1.0"
+serde = { version = "1.0.210", features = ["derive"] }
+anyhow = "1.0.87"
+tiktoken-rs = "0.5.9"
